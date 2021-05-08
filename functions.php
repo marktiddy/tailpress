@@ -86,11 +86,11 @@ function tailpress_setup() {
 	/*************************
  * Registers a widget area.
  ************************/
-function NAMESPACETHIS_widgets_init() {
+function tailpress_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'General Page Sidebar', 'NAMESPACETHIS' ),
+		'name'          => __( 'General Page Sidebar', 'tailpress' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your sidebar on standard pages.', 'NAMESPACETHIS' ),
+		'description'   => __( 'Add widgets here to appear in your sidebar on standard pages.', 'tailpress' ),
 		'before_widget' => '<div id="%1$s" class="widget clearfix %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<div class="fancy-title title-bottom-border"><h2>',
@@ -98,7 +98,7 @@ function NAMESPACETHIS_widgets_init() {
 	) );
 
 }
-add_action( 'widgets_init', 'NAMESPACETHIS_widgets_init' );
+add_action( 'widgets_init', 'tailpress_widgets_init' );
 
 /******************************
  * Remove plugins styles.
