@@ -7,7 +7,7 @@ function tailpress_enqueue_scripts() {
 	$theme = wp_get_theme();
 
 	wp_enqueue_script( 'jquery' );
-
+	wp_enqueue_style('fontawesome','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css',array(),$theme->get('Version'));
 	wp_enqueue_style( 'tailpress', tailpress_get_mix_compiled_asset_url( 'css/app.css' ), array(), $theme->get( 'Version' ) );
 	wp_enqueue_script( 'tailpress', tailpress_get_mix_compiled_asset_url( 'js/app.js' ), array( 'jquery' ), $theme->get( 'Version' ) );
 }
@@ -83,6 +83,41 @@ function tailpress_setup() {
 		)
 	);
 
+	/*************************
+ * Registers a widget area.
+ ************************/
+function NAMESPACETHIS_widgets_init() {
+	register_sidebar( array(
+		'name'          => __( 'General Page Sidebar', 'NAMESPACETHIS' ),
+		'id'            => 'sidebar-1',
+		'description'   => __( 'Add widgets here to appear in your sidebar on standard pages.', 'NAMESPACETHIS' ),
+		'before_widget' => '<div id="%1$s" class="widget clearfix %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<div class="fancy-title title-bottom-border"><h2>',
+		'after_title'   => '</h2></div>',
+	) );
+
+}
+add_action( 'widgets_init', 'NAMESPACETHIS_widgets_init' );
+
+/******************************
+ * Remove plugins styles.
+ *****************************/
+function remove_plugin_styles() {
+	wp_dequeue_style("contact-form-7");
+}
+
+		/*
+	 * Enable support for custom logo.
+	 *
+	 *  @since Twenty Sixteen 1.2
+	 */
+	add_theme_support( 'custom-logo', array(
+		'height'      => 240,
+		'width'       => 240,
+		'flex-height' => true,
+	) );
+
 	// Adding Thumbnail basic support.
 	add_theme_support( 'post-thumbnails' );
 
@@ -149,6 +184,19 @@ function tailpress_nav_menu_add_li_class( $classes, $item, $args, $depth ) {
 
 add_filter( 'nav_menu_css_class', 'tailpress_nav_menu_add_li_class', 10, 4 );
 
+/*******************************************
+ *Add custom classes to wordpress body_class
+ ******************************************/
+add_filter( 'body_class','custom_body_classes' );
+function custom_body_classes( $classes ) { 
+	global $post;
+	if(isset($post)) {
+		$classes[] = $post->post_type . '-' . $post->post_name;
+	}
+    $classes[] = '';
+    return $classes;     
+}
+
 /**
  * Adds option 'submenu_class' to 'wp_nav_menu'.
  *
@@ -171,3 +219,37 @@ function tailpress_nav_menu_add_submenu_class( $classes, $args, $depth ) {
 }
 
 add_filter( 'nav_menu_submenu_css_class', 'tailpress_nav_menu_add_submenu_class', 10, 3 );
+
+
+
+/*****************************************************
+ *ADVANCED CUSTOM FIELDS  
+ *****************************************************/
+/**
+ * Create Option Page
+ *
+ */
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'General Settings',
+		'menu_title'	=> 'Global Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false,
+		'position' => 30
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Header Settings',
+		'menu_title'	=> 'Header Settings',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Footer Settings',
+		'menu_title'	=> 'Footer Settings',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+	
+}
