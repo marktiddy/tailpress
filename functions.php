@@ -253,3 +253,34 @@ if( function_exists('acf_add_options_page') ) {
 	));
 	
 }
+
+/*****************************************************
+*HELPER FUNCTION FOR CREATING CUSTOM POST TYPES
+*****************************************************/
+/**/
+
+    function generateLabels($s,$p) {
+    //S is singular, P is plural
+    $labels = array(
+    'name' => _x( $p, 'post type general name' ),
+    'singular_name' => _x( $p, 'post type singular name' ),
+    'add_new' => _x( 'Add New ' . $s, $p ),
+    'add_new_item' => __( 'Add New '.$s ),
+    'edit_item' => __( 'Edit '.$p ),
+    'new_item' => __( 'New '.$s ),
+    'all_items' => __( 'All '.$p ),
+    'view_item' => __( 'View '.$p ),
+    'search_items' => __( 'Search '.$p ),
+    'not_found' => __( 'No '.$p.' found' ),
+    'not_found_in_trash' => __( 'No '.$p.' found in the Trash' ),
+    'parent_item_colon' => __( 'Parent '.$p ),
+    'menu_name' => $p
+    );
+    return $labels;
+    }
+
+	//FILTERS TO DEFAULT PLUGINS TO NOT AUTO UPDATE
+	add_filter( 'auto_update_plugin', '__return_false' );
+	add_filter( 'auto_update_theme', '__return_false' );
+
+	
