@@ -1,77 +1,17 @@
 <?php
 
 /**
- * Enqueue scripts.
- */
-function tailpress_enqueue_scripts() {
-	$theme = wp_get_theme();
-
-	wp_enqueue_script( 'jquery' );
-	wp_enqueue_style('fontawesome','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css',array(),$theme->get('Version'));
-	wp_enqueue_style( 'tailpress', tailpress_get_mix_compiled_asset_url( 'css/app.css' ), array(), $theme->get( 'Version' ) );
-	wp_enqueue_script( 'tailpress', tailpress_get_mix_compiled_asset_url( 'js/app.js' ), array( 'jquery' ), $theme->get( 'Version' ) );
-}
-
-add_action( 'wp_enqueue_scripts', 'tailpress_enqueue_scripts' );
-
-/**
- * Get mix compiled asset.
- *
- * @param string $path The path to the asset.
- *
- * @return string
- */
-function tailpress_get_mix_compiled_asset_url( $path ) {
-	$path                = '/' . $path;
-	$stylesheet_dir_uri  = get_stylesheet_directory_uri();
-	$stylesheet_dir_path = get_stylesheet_directory();
-
-	if ( ! file_exists( $stylesheet_dir_path . '/mix-manifest.json' ) ) {
-		return $stylesheet_dir_uri . $path;
-	}
-
-	$mix_file_path = file_get_contents( $stylesheet_dir_path . '/mix-manifest.json' );
-	$manifest      = json_decode( $mix_file_path, true );
-	$asset_path    = ! empty( $manifest[ $path ] ) ? $manifest[ $path ] : $path;
-
-	return $stylesheet_dir_uri . $asset_path;
-}
-
-/**
- * Get data from the tailpress.json file.
- *
- * @param mixed $key The key to retrieve.
- *
- * @return mixed|null
- */
-function tailpress_get_data( $key = null ) {
-	$config = json_decode( file_get_contents( get_stylesheet_directory() . '/tailpress.json' ), true );
-
-	if ( $key === null ) {
-		return filter_var_array( $config, FILTER_SANITIZE_STRING );
-	}
-
-	$option = filter_var( $config[ $key ], FILTER_SANITIZE_STRING );
-
-	return $option ?? null;
-}
-
-/**
  * Theme setup.
  */
 function tailpress_setup() {
-	// Let WordPress manage the document title.
 	add_theme_support( 'title-tag' );
 
-	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
 			'primary' => __( 'Primary Menu', 'tailpress' ),
 		)
 	);
 
-	// Switch default core markup for search form, comment form, and comments
-	// to output valid HTML5.
 	add_theme_support(
 		'html5',
 		array(
@@ -83,83 +23,44 @@ function tailpress_setup() {
 		)
 	);
 
-	/*************************
- * Registers a widget area.
- ************************/
-function tailpress_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'General Page Sidebar', 'tailpress' ),
-		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your sidebar on standard pages.', 'tailpress' ),
-		'before_widget' => '<div id="%1$s" class="widget clearfix %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<div class="fancy-title title-bottom-border"><h2>',
-		'after_title'   => '</h2></div>',
-	) );
-
-}
-add_action( 'widgets_init', 'tailpress_widgets_init' );
-
-/******************************
- * Remove plugins styles.
- *****************************/
-function remove_plugin_styles() {
-	wp_dequeue_style("contact-form-7");
-}
-
-		/*
-	 * Enable support for custom logo.
-	 *
-	 *  @since Twenty Sixteen 1.2
-	 */
-	add_theme_support( 'custom-logo', array(
-		'height'      => 240,
-		'width'       => 240,
-		'flex-height' => true,
-	) );
-
-	// Adding Thumbnail basic support.
+    add_theme_support( 'custom-logo' );
 	add_theme_support( 'post-thumbnails' );
 
-	// Block editor.
 	add_theme_support( 'align-wide' );
-
 	add_theme_support( 'wp-block-styles' );
 
 	add_theme_support( 'editor-styles' );
-	add_editor_style();
-
-	$tailpress = tailpress_get_data();
-
-	$colors = array_map(
-		function ( $color, $hex ) {
-			return array(
-				'name'  => ucfirst( $color ),
-				'slug'  => $color,
-				'color' => $hex,
-			);
-		},
-		array_keys( $tailpress['colors'] ),
-		$tailpress['colors']
-	);
-
-	$font_sizes = array_map(
-		function ( $size, $px ) {
-			return array(
-				'name' => ucfirst( $size ),
-				'size' => $px,
-				'slug' => $size,
-			);
-		},
-		array_keys( $tailpress['fontSizes'] ),
-		$tailpress['fontSizes']
-	);
-
-	add_theme_support( 'editor-color-palette', $colors );
-	add_theme_support( 'editor-font-sizes', $font_sizes );
+	add_editor_style( 'css/editor-style.css' );
 }
 
 add_action( 'after_setup_theme', 'tailpress_setup' );
+
+/**
+ * Enqueue theme assets.
+ */
+function tailpress_enqueue_scripts() {
+	$theme = wp_get_theme();
+	wp_enqueue_style( 'fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css', array(), $theme->get( 'Version' ) );
+	wp_enqueue_style( 'tailpress', tailpress_asset( 'css/app.css' ), array(), $theme->get( 'Version' ) );
+	wp_enqueue_script( 'tailpress', tailpress_asset( 'js/app.js' ), array(), $theme->get( 'Version' ) );
+}
+
+add_action( 'wp_enqueue_scripts', 'tailpress_enqueue_scripts' );
+
+/**
+ * Get asset path.
+ *
+ * @param string  $path Path to asset.
+ *
+ * @return string
+ */
+function tailpress_asset( $path ) {
+	if ( wp_get_environment_type() === 'production' ) {
+		return get_stylesheet_directory_uri() . '/' . $path;
+	}
+
+	return add_query_arg( 'time', time(),  get_stylesheet_directory_uri() . '/' . $path );
+}
 
 /**
  * Adds option 'li_class' to 'wp_nav_menu'.
