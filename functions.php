@@ -192,3 +192,11 @@ function tg_enable_strict_transport_security_hsts_header_wordpress() {
 header( 'Strict-Transport-Security: max-age=10886400' );
 }
 add_action( 'send_headers', 'tg_enable_strict_transport_security_hsts_header_wordpress' );
+
+//HELPER FUNCTIONS
+function format_telephone($tel) {
+    $formatTel = str_replace(' ','',$tel);
+    $formatTel[0] = '+';
+    $formatTel = str_replace('+','+44',$formatTel);
+    return $formatTel;
+}
