@@ -2,39 +2,9 @@
 
 # Introduction
 
-TailPress is a minimal boilerplate theme for WordPress using [Tailwind CSS](https://tailwindcss.com/).
+This Tailpress fork is based off the original Tailpress but with some extra helper functions and Carbon Fields setup for easy addition of custom fields.
 
 ## Getting started
-
-### Using the installer
-
-You can get started using the installer (using composer):
-
-```bash
-composer global require jeffreyvanrossum/tailpress-installer
-
-tailpress new example-theme
-```
-
-_If you haven't already, make sure to place the `~/.composer/vendor/bin` directory in your `PATH` so the tailpress executable is found when you run the tailpress command in your terminal._
-
-You can optionally set the theme name.
-
-```bash
-tailpress new example-theme --name="Example Theme"
-```
-
-You can also initialize a new Git repository (branch defaults to `main`):
-
-```bash
-tailpress new example-theme --name="Example Theme" --git --branch="main"
-```
-
-Once your theme is ready, don't forget to cd into the directory.
-
-You will be asked if you would like to have WordPress installed as well. Keep in mind that you still need a local development environment for PHP and MySQL.
-
-### Regular method
 
 - Clone repo `git clone https://github.com/jeffreyvr/tailpress.git && cd tailpress`
 - Run `rm -rf .git` to remove git (or `rmdir .git` for Windows)
@@ -96,3 +66,7 @@ https://github.com/htmlburger/carbon-fields/issues/743
 On line 215 of /htmlburger/core/Container/Block_Container.php update to the following
 
 wp_style_is( $handle, 'registered' )
+
+## Carbon Fields Documentation
+
+https://docs.carbonfields.net/
