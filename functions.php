@@ -3,6 +3,8 @@
 /**
  * Theme setup.
  */
+ require_once(__DIR__.'/resources/inc/carbon-fields.php');
+
 function tailpress_setup() {
 	add_theme_support( 'title-tag' );
 
