@@ -55,7 +55,8 @@ class ThemeCarbonFields {
     //Add the Custom Blocks
     public function add_custom_blocks() {
 
-    Block::make(__('My Gutenberg Block'))
+    //START BLOCK
+    $blockName = Block::make(__('My Gutenberg Block'))
         ->add_fields(array(
             Field::make( 'text', 'heading', __( 'Block Heading' ) ),
         ))
@@ -70,6 +71,11 @@ class ThemeCarbonFields {
             //Pass the attributes to the template part
         get_template_part('template-parts/blocks/demo','', ['fields' => $fields,'attributes' => $attributes,'inner_blocks' => $inner_blocks]); 
         });
+
+        $blockName->settings['mode'] = 'preview';
+        //END BLOCK
+
+        
     }
 
     // Set Up Yoast with Carbon Fields
