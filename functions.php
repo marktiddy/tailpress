@@ -3,7 +3,6 @@
 /**
  * Theme setup.
  */
- require_once(__DIR__.'/resources/inc/carbon-fields.php');
 
 function tailpress_setup() {
 	add_theme_support( 'title-tag' );
@@ -203,3 +202,11 @@ function format_telephone($tel) {
     $formatTel = str_replace('+','+44',$formatTel);
     return $formatTel;
 }
+
+// Function to get the alt tag of an image ID
+function get_alt_tag($id) {
+	return get_post_meta($id,'_wp_attachment_image_alt',TRUE);
+}
+
+// Enqueue Carbon Fields
+ require_once(__DIR__.'/resources/inc/carbon-fields.php');

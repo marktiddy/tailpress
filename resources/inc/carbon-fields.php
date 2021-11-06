@@ -19,13 +19,42 @@ class ThemeCarbonFields {
         $this->blockCategorySlug = 'my-custom-blocks';
         $this->blockCategoryIcon = 'smiley';
 
-        wp_register_style('carbon-fields-blocks-stylesheet', get_template_directory_uri().'/css/app.css'); //Enqueue style
+        add_filter('block_categories_all',[$this,'create_block_categories'],10,2); //Create our block category
         add_action( 'carbon_fields_register_fields', [$this,'crb_attach_theme_options'] ); //Set up theme options
         add_action( 'after_setup_theme', [$this,'crb_load'] ); //Load carbon fields
         add_action( 'carbon_fields_register_fields', [$this,'add_custom_blocks'] ); //Add custom blocks
         add_action( 'after_setup_theme', [$this,'crb_initialize_carbon_yoast'] ); //Yoast Setup
         add_action( 'admin_enqueue_scripts', [$this,'crb_enqueue_admin_scripts'] ); //Yoast Setup
+        add_filter( 'allowed_block_types', array($this,'cf_allowed_block_types') ); // Disable most default blocks
+
     }
+
+    //Function to disable most default blocks
+    private function cf_allowed_block_types( $allowed_blocks ) {
+    return array(
+        'core/image',
+        'core/paragraph',
+        'core/heading',
+        'core/list',
+        'carbon-fields/demo-block'
+    );
+    }
+
+    // Function to set up our block category
+       private function create_block_categories ($categories,$post) {
+         return array_merge(
+            $categories,
+            array(
+                array(
+                    'slug' => $this->blockCategorySlug,
+                    'title' => $this->blockCategory,
+                    'icon'  => $this->blockCategoryIcon,
+                ),
+            )
+        );
+
+    }
+
 
 
     //Set Up Theme Options 
@@ -54,15 +83,18 @@ class ThemeCarbonFields {
 
     //Add the Custom Blocks
     public function add_custom_blocks() {
+        // Enqueue Stylesheets and Fonts for Blocks
+        wp_enqueue_style( 'fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css', array(), '1.0' );
+        wp_register_style('carbon-fields-blocks-stylesheet', get_template_directory_uri().'/css/app.css'); //Enqueue style
 
     //START BLOCK
-    $blockName = Block::make(__('My Gutenberg Block'))
+    $demoBlock = Block::make(__('Demo Block'))
         ->add_fields(array(
             Field::make( 'text', 'heading', __( 'Block Heading' ) ),
         ))
         ->set_description(__('A demo block'))
         ->set_keywords([__('block')])
-        ->set_category($this->blockCategorySlug,__($this->blockCategory),$this->blockCategoryIcon)
+        ->set_category($this->blockCategorySlug)
         ->set_icon( 'book-alt' )
         ->set_mode( 'both' ) //Allow preview and editor
         ->set_editor_style('carbon-fields-blocks-stylesheet')
@@ -72,7 +104,7 @@ class ThemeCarbonFields {
         get_template_part('template-parts/blocks/demo','', ['fields' => $fields,'attributes' => $attributes,'inner_blocks' => $inner_blocks]); 
         });
 
-        $blockName->settings['mode'] = 'preview';
+        $demoBlock->settings['mode'] = 'preview';
         //END BLOCK
 
         

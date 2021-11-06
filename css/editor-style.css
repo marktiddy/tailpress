@@ -256,21 +256,6 @@
   background-color: rgba(17, 24, 39, var(--tw-bg-opacity))
 }
 
-.bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(239, 68, 68, var(--tw-bg-opacity))
-}
-
-.bg-green-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(16, 185, 129, var(--tw-bg-opacity))
-}
-
-.bg-blue-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(59, 130, 246, var(--tw-bg-opacity))
-}
-
 .p-4 {
   padding: 1rem
 }
@@ -321,6 +306,10 @@
 
 .text-center {
   text-align: center
+}
+
+.font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 }
 
 .text-5xl {
@@ -534,13 +523,19 @@ body {
   max-width: 1280px
 }
 
-.wp-block[data-align=wide] {
+.wp-block[data-align="wide"] {
   max-width: 1280px
 }
 
-.wp-block[data-align=full] {
+.wp-block[data-align="full"] {
   max-width: 100%
 }
+
+/* fixing editor styles */
+
+.components-panel h2, .components-panel h3, .components-panel h4, .components-panel h5, .components-panel h6, .wpseo-metabox-content h2, .wpseo-metabox-content h3, .wpseo-metabox-content h4, .wpseo-metabox-content h5, .wpseo-metabox-content h6 {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important
+  }
 
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
