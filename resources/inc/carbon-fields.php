@@ -30,7 +30,7 @@ class ThemeCarbonFields {
     }
 
     //Function to disable most default blocks
-    private function cf_allowed_block_types( $allowed_blocks ) {
+     function cf_allowed_block_types( $allowed_blocks ) {
     return array(
         'core/image',
         'core/paragraph',
@@ -41,7 +41,7 @@ class ThemeCarbonFields {
     }
 
     // Function to set up our block category
-       private function create_block_categories ($categories,$post) {
+        function create_block_categories ($categories,$post) {
          return array_merge(
             $categories,
             array(
