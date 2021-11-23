@@ -15,7 +15,7 @@ $demoBlock = Block::make(__('Demo Block'))
         ->set_style('carbon-fields-blocks-stylesheet')
         ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
             //Pass the attributes to the template part
-            get_template_part('template-parts/blocks/demo','', ['fields' => $fields,'attributes' => $attributes,'inner_blocks' => $inner_blocks]); 
+            get_template_part('template-parts/blocks/demo-block','', ['fields' => $fields,'attributes' => $attributes,'inner_blocks' => $inner_blocks]); 
         });
 
 $demoBlock->settings['mode'] = 'preview';

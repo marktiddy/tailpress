@@ -64,15 +64,22 @@ class ThemeCarbonFields {
             ->set_icon('dashicons-admin-generic')
             ->set_page_menu_title('Site Options')
             ->add_fields( array(
+                Field::make('image','logo','Site Logo')
+                    ->set_required(true),
                 Field::make( 'text', 'tel', 'Phone Number' )
                     ->set_attribute( 'placeholder', '***** ******' ),
                 Field::make( 'text', 'email', 'Email Address' )
                     ->set_attribute( 'placeholder', 'hello@yoursite.com' ),
+                Field::make('textarea','address','Address'),
                 Field::make( 'urlpicker', 'facebook', 'Facebook' ),
                 Field::make( 'urlpicker', 'twitter', 'Twitter' ),
                 Field::make( 'urlpicker', 'linkedin', 'LinkedIn' ),
                 Field::make( 'image', 'fallback_header', __( 'Fallback Header Image' ) )
-                      ->set_help_text( "The image used when no featured image is set on a page/post" )
+                      ->set_help_text( "The image used when no featured image is set on a page/post" ),
+                 Field::make( 'header_scripts', 'header_scripts', __( 'Header Scripts' ) )
+                    ->set_help_text( "Used to add JavaScript to site header for analytics etc." ),
+                 Field::make( 'footer_scripts', 'footer_scripts', __( 'Footer Scripts' ) )
+                 ->set_help_text( "Used to add JavaScript to site footer for analytics etc." )
             ) );
     }
 
@@ -88,7 +95,7 @@ class ThemeCarbonFields {
         wp_register_style('carbon-fields-blocks-stylesheet', get_template_directory_uri().'/css/app.css'); //Enqueue style
 
     //START BLOCK
-    include_once(__DIR__ . '/blocks/demo.php');
+    include_once(__DIR__ . '/blocks/demo-block.php');
 
         
     }
