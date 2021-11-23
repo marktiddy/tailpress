@@ -27,12 +27,12 @@ Before you use your theme in production, make sure you run `npm run production`.
 
 There are several NPM scripts available. You'll find the full list in the `package.json` file onder "scripts". A script is executed through the terminal by running `npm run script-name`.
 
-| Script     | Description                                                                    |
-| ---------- | ------------------------------------------------------------------------------ |
-| production | Creates a production (minified) build of app.js, app.css and editor-style.css. |
-| dev        | Creates a development build of app.js, app.css and editor-style.css.           |
-| watch      | Runs several watch scripts concurrently.                                       |
-| watch-sync | Runs several watch scripts concurrently and starts `browser-sync`.             |
+| Script     | Description                                                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| production | Creates a production (minified) build of app.js, app.css and editor-style.css. and saves it one folder up from the root as a zip file using gulp |
+| dev        | Creates a development build of app.js, app.css and editor-style.css.                                                                             |
+| watch      | Runs several watch scripts concurrently.                                                                                                         |
+| watch-sync | Runs several watch scripts concurrently and starts `browser-sync`.                                                                               |
 
 ## Block editor support
 
