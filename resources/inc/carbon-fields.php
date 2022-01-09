@@ -29,15 +29,28 @@ class ThemeCarbonFields {
 
     }
 
-    //Function to disable most default blocks
+    //Function to disable most default blocks and import our blocks
      function cf_allowed_block_types( $allowed_blocks ) {
-    return array(
-        'core/image',
-        'core/paragraph',
-        'core/heading',
-        'core/list',
-        'carbon-fields/demo-block'
-    );
+         $allowedBlocks = array(
+            'core/image',
+            //'core/paragraph',
+            //'core/heading',
+            'core/spacer',
+            'core/list',
+            'core/shortcode'
+        );
+
+        //Get all CF blocks
+        foreach (glob(__DIR__ . "/blocks/*.php") as $filename)
+            {
+                $info = pathinfo($filename);
+                $file_name = basename($filename, '.'.$info['extension']);
+                $file_name = $info['filename'];
+                array_push($allowedBlocks,'carbon-fields/' . $file_name);
+            }
+
+        return $allowedBlocks;
+
     }
 
     // Function to set up our block category
@@ -94,8 +107,11 @@ class ThemeCarbonFields {
         wp_enqueue_style( 'fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css', array(), '1.0' );
         wp_register_style('carbon-fields-blocks-stylesheet', get_template_directory_uri().'/css/app.css'); //Enqueue style
 
-    //START BLOCK
-    include_once(__DIR__ . '/blocks/demo-block.php');
+        //Loop to include all blocks
+        foreach (glob(__DIR__ . "/blocks/*.php") as $filename)
+        {
+            include $filename;
+        }
 
         
     }
