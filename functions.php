@@ -208,5 +208,19 @@ function get_alt_tag($id) {
 	return get_post_meta($id,'_wp_attachment_image_alt',TRUE);
 }
 
+// Helper function to see if buttons actually exist
+function checkButton($button) {
+    if (!isset($button['url'])) {
+        // Not set
+        return false;
+    }
+
+    if (strlen($button['url']) > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // Enqueue Carbon Fields
  require_once(__DIR__.'/resources/inc/carbon-fields.php');
