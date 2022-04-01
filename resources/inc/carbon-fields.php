@@ -33,8 +33,8 @@ class ThemeCarbonFields {
      function cf_allowed_block_types( $allowed_blocks ) {
          $allowedBlocks = array(
             'core/image',
-            //'core/paragraph',
-            //'core/heading',
+            'core/paragraph',
+            'core/heading',
             'core/spacer',
             'core/list',
             'core/shortcode'
@@ -67,8 +67,6 @@ class ThemeCarbonFields {
         );
 
     }
-
-
 
     //Set Up Theme Options 
     public function crb_attach_theme_options() {

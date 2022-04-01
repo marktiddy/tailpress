@@ -6,48 +6,11 @@ This Tailpress fork is based off the original Tailpress but with some extra help
 
 ## Getting started
 
-### Using the installer
-
-You can get started using the installer (using composer):
-
-```bash
-composer global require jeffreyvanrossum/tailpress-installer
-
-tailpress new example-theme
-```
-
-_If you haven't already, make sure to place the `~/.composer/vendor/bin` directory in your `PATH` so the tailpress executable is found when you run the tailpress command in your terminal._
-
-You can optionally set the theme name.
-
-```bash
-tailpress new example-theme --name="Example Theme"
-```
-
-By default, TailPress uses esbuild and Tailwind's CLI for compiling. Rather use Laravel Mix?
-
-```bash
-tailpress new example-theme --compiler="mix"
-```
-
-You can also initialize a new Git repository (branch defaults to `main`):
-
-```bash
-tailpress new example-theme --name="Example Theme" --git --branch="main"
-```
-
-Once your theme is ready, don't forget to cd into the directory.
-
-You will be asked if you would like to have WordPress installed as well. Keep in mind that you still need a local development environment for PHP and MySQL.
-
-### Regular method
-
-- Clone repo `git clone https://github.com/jeffreyvr/tailpress.git && cd tailpress`
-- Run `rm -rf .git` to remove git (or `rmdir .git` for Windows)
-- Run `npm install`
+- Clone repo `git clone https://github.com/marktiddy/tailpress.git && cd tailpress`
+- Run `npm run setup` to install the packages including composer packages
+- Fix the Carbon Fields error using the following instruction
+- On line 215 of /htmlburger/core/Container/Block_Container.php change to: wp_style_is( $handle, 'registered' )
 - Run `npm run watch` to start developing
-
-* Follow the instructions at the bottom to fix the CF error if you get it
 
 ### General
 
