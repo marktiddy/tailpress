@@ -3,7 +3,6 @@ const theme = require("./theme.json");
 const tailpress = require("@jeffreyvr/tailwindcss-tailpress");
 
 module.exports = {
-  mode: "jit",
   content: [
     "./*/*.php",
     "./**/*.php",
@@ -23,12 +22,17 @@ module.exports = {
       colors: tailpress.colorMapper(
         tailpress.theme("settings.color.palette", theme)
       ),
+      fontSize: tailpress.fontSizeMapper(
+        tailpress.theme("settings.typography.fontSizes", theme)
+      ),
     },
     screens: {
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
+      xs: "480px",
+      sm: "600px",
+      md: "782px",
+      lg: tailpress.theme("settings.layout.contentSize", theme),
       xl: tailpress.theme("settings.layout.wideSize", theme),
+      "2xl": "1440px",
     },
   },
   plugins: [tailpress.tailwind],
