@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
+! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -30,6 +30,7 @@
 2. Prevent adjustments of font size after orientation changes in iOS.
 3. Use a more readable tab size.
 4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
 */
 
 html {
@@ -44,6 +45,8 @@ html {
   /* 3 */
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
 }
 
 /*
@@ -186,6 +189,8 @@ textarea {
   font-family: inherit;
   /* 1 */
   font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
   /* 1 */
   line-height: inherit;
   /* 1 */
@@ -353,13 +358,6 @@ input::-moz-placeholder, textarea::-moz-placeholder {
   /* 2 */
 }
 
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-  opacity: 1;
-  /* 1 */
-  color: #9ca3af;
-  /* 2 */
-}
-
 input::placeholder,
 textarea::placeholder {
   opacity: 1;
@@ -415,15 +413,62 @@ video {
   height: auto;
 }
 
-/*
-Ensure the default browser behavior of the `hidden` attribute.
-*/
+/* Make elements with the HTML hidden attribute stay hidden by default */
 
 [hidden] {
   display: none;
 }
 
 *, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -494,9 +539,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .container {
-    max-width: 960px;
+    max-width: 1024px;
     padding-right: 0rem;
     padding-left: 0rem;
   }
@@ -508,18 +553,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1536px) {
   .container {
-    max-width: 1440px;
+    max-width: 1536px;
   }
-}
-
-.visible {
-  visibility: visible;
-}
-
-.static {
-  position: static;
 }
 
 .m-8 {
@@ -587,24 +624,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: inline-block;
 }
 
-.inline {
-  display: inline;
-}
-
 .flex {
   display: flex;
-}
-
-.table {
-  display: table;
-}
-
-.grid {
-  display: grid;
-}
-
-.contents {
-  display: contents;
 }
 
 .hidden {
@@ -640,7 +661,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .max-w-screen-lg {
-  max-width: 960px;
+  max-width: 1024px;
 }
 
 .flex-none {
@@ -655,10 +676,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   cursor: pointer;
 }
 
-.resize {
-  resize: both;
-}
-
 .list-inside {
   list-style-position: inside;
 }
@@ -669,11 +686,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .list-decimal {
   list-style-type: decimal;
-}
-
-.columns-2 {
-  -moz-columns: 2;
-       columns: 2;
 }
 
 .flex-col {
@@ -852,10 +864,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-transform: uppercase;
 }
 
-.lowercase {
-  text-transform: lowercase;
-}
-
 .leading-6 {
   line-height: 1.5rem;
 }
@@ -913,19 +921,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .transition-colors {
-  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -960,33 +966,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 @media (min-width: 600px) {
   .alignleft:not(.wp-block-button) {
     margin-right: 0.5rem;
-  }
-
-  .alignleft:not(.wp-block-button) {
     float: left;
   }
 
   .alignright:not(.wp-block-button) {
     margin-left: 0.5rem;
-  }
-
-  .alignright:not(.wp-block-button) {
     float: right;
   }
 
   .wp-block-button.alignleft a {
     float: left;
-  }
-
-  .wp-block-button.alignleft a {
     margin-right: 1rem;
   }
 
   .wp-block-button.alignright a {
     float: right;
-  }
-
-  .wp-block-button.alignright a {
     margin-left: 1rem;
   }
 }
@@ -1005,60 +999,50 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: #4b5563;
 }
 
-article > *:not(.entry-content), .entry-content > * {
+article > *:not(.entry-content),
+.entry-content > * {
   margin-left: auto;
   margin-right: auto;
-  max-width: 960px;
+  max-width: 1024px;
 }
 
 .entry-content h1, .block-editor-block-list__layout h1 {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
 
 .entry-content h2, .block-editor-block-list__layout h2 {
-    font-size: 1.25rem;
-  }
+  font-size: 1.25rem;
+}
 
 .entry-content h3, .block-editor-block-list__layout h3 {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
 
 .entry-content p a, .entry-content ul a, .entry-content ol a, .block-editor-block-list__layout p a, .block-editor-block-list__layout ul a, .block-editor-block-list__layout ol a {
-      --tw-text-opacity: 1;
-      color: rgb(59 130 246 / var(--tw-text-opacity));
-    }
-
-.entry-content p a, .entry-content ul a, .entry-content ol a, .block-editor-block-list__layout p a, .block-editor-block-list__layout ul a, .block-editor-block-list__layout ol a {
-      -webkit-text-decoration-line: underline;
-              text-decoration-line: underline;
-    }
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
+  text-decoration-line: underline;
+}
 
 .entry-content p a:hover, .entry-content ul a:hover, .entry-content ol a:hover, .block-editor-block-list__layout p a:hover, .block-editor-block-list__layout ul a:hover, .block-editor-block-list__layout ol a:hover {
-        -webkit-text-decoration-line: none;
-                text-decoration-line: none;
-      }
+  text-decoration-line: none;
+}
 
 .entry-content p, .entry-content ul, .entry-content ol, .block-editor-block-list__layout p, .block-editor-block-list__layout ul, .block-editor-block-list__layout ol {
-    margin-bottom: 2rem;
-  }
+  margin-bottom: 2rem;
+}
 
 .entry-content ul:not(.block-editor-block-variation-picker__variations) li, .block-editor-block-list__layout ul:not(.block-editor-block-variation-picker__variations) li {
-      list-style-position: inside;
-    }
-
-.entry-content ul:not(.block-editor-block-variation-picker__variations) li, .block-editor-block-list__layout ul:not(.block-editor-block-variation-picker__variations) li {
-      list-style-type: disc;
-    }
+  list-style-position: inside;
+  list-style-type: disc;
+}
 
 .entry-content ol li, .block-editor-block-list__layout ol li {
-      list-style-position: inside;
-    }
-
-.entry-content ol li, .block-editor-block-list__layout ol li {
-      list-style-type: decimal;
-    }
+  list-style-position: inside;
+  list-style-type: decimal;
+}
 
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
@@ -1119,7 +1103,7 @@ article > *:not(.entry-content), .entry-content > * {
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .lg\:-mx-4 {
     margin-left: -1rem;
     margin-right: -1rem;
