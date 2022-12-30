@@ -24,9 +24,9 @@
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .container {
-    max-width: 960px;
+    max-width: 1024px;
     padding-right: 0rem;
     padding-left: 0rem
   }
@@ -38,18 +38,10 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1536px) {
   .container {
-    max-width: 1440px
+    max-width: 1536px
   }
-}
-
-.visible {
-  visibility: visible
-}
-
-.static {
-  position: static
 }
 
 .m-8 {
@@ -117,24 +109,8 @@
   display: inline-block
 }
 
-.inline {
-  display: inline
-}
-
 .flex {
   display: flex
-}
-
-.table {
-  display: table
-}
-
-.grid {
-  display: grid
-}
-
-.contents {
-  display: contents
 }
 
 .hidden {
@@ -170,7 +146,7 @@
 }
 
 .max-w-screen-lg {
-  max-width: 960px
+  max-width: 1024px
 }
 
 .flex-none {
@@ -185,10 +161,6 @@
   cursor: pointer
 }
 
-.resize {
-  resize: both
-}
-
 .list-inside {
   list-style-position: inside
 }
@@ -199,11 +171,6 @@
 
 .list-decimal {
   list-style-type: decimal
-}
-
-.columns-2 {
-  -moz-columns: 2;
-       columns: 2
 }
 
 .flex-col {
@@ -382,10 +349,6 @@
   text-transform: uppercase
 }
 
-.lowercase {
-  text-transform: lowercase
-}
-
 .leading-6 {
   line-height: 1.5rem
 }
@@ -443,19 +406,17 @@
   color: rgb(59 130 246 / var(--tw-text-opacity))
 }
 
+.underline {
+  text-decoration-line: underline
+}
+
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale
 }
 
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
-}
-
 .transition-colors {
-  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms
 }
@@ -489,34 +450,22 @@
 
 @media (min-width: 600px) {
   .alignleft:not(.wp-block-button) {
-    margin-right: 0.5rem
-  }
-
-  .alignleft:not(.wp-block-button) {
+    margin-right: 0.5rem;
     float: left
   }
 
   .alignright:not(.wp-block-button) {
-    margin-left: 0.5rem
-  }
-
-  .alignright:not(.wp-block-button) {
+    margin-left: 0.5rem;
     float: right
   }
 
   .wp-block-button.alignleft a {
-    float: left
-  }
-
-  .wp-block-button.alignleft a {
+    float: left;
     margin-right: 1rem
   }
 
   .wp-block-button.alignright a {
-    float: right
-  }
-
-  .wp-block-button.alignright a {
+    float: right;
     margin-left: 1rem
   }
 }
@@ -553,9 +502,18 @@ body {
 
 /* fixing editor styles */
 
-.components-panel h2, .components-panel h3, .components-panel h4, .components-panel h5, .components-panel h6, .wpseo-metabox-content h2, .wpseo-metabox-content h3, .wpseo-metabox-content h4, .wpseo-metabox-content h5, .wpseo-metabox-content h6 {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important
-  }
+.components-panel h2,
+  .components-panel h3,
+  .components-panel h4,
+  .components-panel h5,
+  .components-panel h6,
+  .wpseo-metabox-content h2,
+  .wpseo-metabox-content h3,
+  .wpseo-metabox-content h4,
+  .wpseo-metabox-content h5,
+  .wpseo-metabox-content h6 {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important
+}
 
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
@@ -616,7 +574,7 @@ body {
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .lg\:-mx-4 {
     margin-left: -1rem;
     margin-right: -1rem
