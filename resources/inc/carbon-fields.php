@@ -83,12 +83,15 @@ class ThemeCarbonFields {
                     ->set_attribute( 'placeholder', 'hello@yoursite.com' ),
                 Field::make('textarea','address','Address'),
                 Field::make( 'urlpicker', 'facebook', 'Facebook' ),
-                Field::make( 'urlpicker', 'twitter', 'Twitter' ),
+                Field::make( 'urlpicker', 'x', 'X' ),
                 Field::make( 'urlpicker', 'linkedin', 'LinkedIn' ),
+                Field::make( 'urlpicker', 'instagram', 'Instagram' ),
                 Field::make( 'image', 'fallback_header', __( 'Fallback Header Image' ) )
                       ->set_help_text( "The image used when no featured image is set on a page/post" ),
-                 Field::make( 'header_scripts', 'header_scripts', __( 'Header Scripts' ) )
+                Field::make( 'header_scripts', 'header_scripts', __( 'Header Scripts' ) )
                     ->set_help_text( "Used to add JavaScript to site header for analytics etc." ),
+                Field::make('textarea', 'body_scripts', __('Body Scripts'))
+                    ->set_help_text('Scripts to add to the opening body'),
                  Field::make( 'footer_scripts', 'footer_scripts', __( 'Footer Scripts' ) )
                  ->set_help_text( "Used to add JavaScript to site footer for analytics etc." )
             ) );
@@ -102,7 +105,7 @@ class ThemeCarbonFields {
     //Add the Custom Blocks
     public function add_custom_blocks() {
         // Enqueue Stylesheets and Fonts for Blocks
-        wp_enqueue_style( 'fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css', array(), '1.0' );
+        wp_enqueue_style( 'fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', array(), '1.0' );
         wp_register_style('carbon-fields-blocks-stylesheet', get_template_directory_uri().'/css/app.css'); //Enqueue style
 
         //Loop to include all blocks

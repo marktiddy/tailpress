@@ -10,7 +10,7 @@
 </head>
 
 <body <?php body_class( 'bg-white text-gray-900 antialiased' ); ?>>
-
+<?= carbon_get_theme_option('body_scripts'); ?>
 <?php do_action( 'tailpress_site_before' ); ?>
 
 <div id="page" class="min-h-screen flex flex-col">

@@ -41,10 +41,10 @@ add_action( 'after_setup_theme', 'tailpress_setup' );
  */
 function tailpress_enqueue_scripts() {
 	$theme = wp_get_theme();
-	wp_enqueue_style( 'fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css', array(), $theme->get( 'Version' ) );
+	wp_enqueue_style( 'fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_script('jquery');
 	wp_enqueue_style( 'tailpress', tailpress_asset( 'css/app.css' ), array(), $theme->get( 'Version' ) );
-	wp_enqueue_script( 'tailpress', tailpress_asset( 'js/app.js' ), array(), $theme->get( 'Version' ) );
+	wp_enqueue_script( 'tailpress', tailpress_asset( 'js/app.js' ), array('jquery'), $theme->get( 'Version' ) );
 }
 
 add_action( 'wp_enqueue_scripts', 'tailpress_enqueue_scripts' );
@@ -220,6 +220,20 @@ function checkButton($button) {
     } else {
         return false;
     }
+}
+
+// Function to return Carbon Field Options
+function getSiteInfo() {
+	return array(
+		'logo' => carbon_get_theme_option('image'),
+		'email' => carbon_get_theme_option('email'),
+		'tel' => carbon_get_theme_option('tel'),
+		'address' => carbon_get_theme_option('address'),
+		'facebook' => carbon_get_theme_option('facebook'),
+		'x' => carbon_get_theme_option('x'),
+		'linkedin' => carbon_get_theme_option('linkedin'),
+		'instagram' => carbon_get_theme_option('instagram')
+	);
 }
 
 // Enqueue Carbon Fields

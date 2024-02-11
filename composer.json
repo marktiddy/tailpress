@@ -1,7 +1,7 @@
 {
-    "require": {
-        "htmlburger/carbon-fields": "^3.3",
-        "htmlburger/carbon-fields-yoast": "^1.0",
-        "iamntz/carbon-fields-urlpicker": "^3.0"
-    }
+  "require": {
+    "htmlburger/carbon-fields": "^3.6.3",
+    "htmlburger/carbon-fields-yoast": "^1.0",
+    "iamntz/carbon-fields-urlpicker": "^3.0"
+  }
 }

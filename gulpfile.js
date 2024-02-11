@@ -1,9 +1,9 @@
-const gulp = require("gulp");
-const zip = require("gulp-zip");
+import gulp from "gulp";
+const { src, dest } = gulp;
+import zip from "gulp-zip";
 
-exports.default = async () => {
-  await gulp
-    .src(["*", "*/**", "!node_modules/**", "vendor/*/**"], { base: "./" })
+export default async () => {
+  await src(["*", "*/**", "!node_modules/**", "vendor/*/**"], { base: "./" })
     .pipe(zip("tailpress.zip"))
-    .pipe(gulp.dest("../"));
+    .pipe(dest("../"));
 };
