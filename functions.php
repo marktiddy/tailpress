@@ -238,3 +238,8 @@ function getSiteInfo() {
 
 // Enqueue Carbon Fields
  require_once(__DIR__.'/resources/inc/carbon-fields.php');
+
+add_action( 'wp_enqueue_scripts', 'remove_global_styles' );
+function remove_global_styles(){
+    wp_dequeue_style( 'global-styles' );
+}
